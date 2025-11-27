@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: aigrow-slides
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Content-Type
+        value: text/html; charset=UTF-8
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
